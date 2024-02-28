@@ -7,9 +7,9 @@ import lombok.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Transport")
+@Table(name = "Mission")
 @Data
-public class Transport implements Serializable   {
+public class Mission implements Serializable   {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,11 +21,16 @@ public class Transport implements Serializable   {
 
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
-    private Vehicule vehicle;
+    private Car vehicle;
 
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+
 
     @Enumerated(EnumType.STRING)
     private TransportStatus status;

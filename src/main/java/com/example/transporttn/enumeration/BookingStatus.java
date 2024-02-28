@@ -1,6 +1,6 @@
 package com.example.transporttn.enumeration;
 
-public enum ReservationStatus {
+public enum BookingStatus {
     EN_ATTENTE,
     CONFIRMÉ,
     ANNULÉ,

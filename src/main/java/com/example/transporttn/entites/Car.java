@@ -2,6 +2,8 @@ package com.example.transporttn.entites;
 
 
 import javax.persistence.*;
+
+import com.example.transporttn.enumeration.VehicleType;
 import lombok.*;
 
 import java.io.Serializable;
@@ -9,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Vehicule")
 @Data
-public class Vehicule   implements Serializable{
+public class Car implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +21,10 @@ public class Vehicule   implements Serializable{
     private String numeroSerie;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Company user; // Utilisateur auquel appartient ce véhicule
+    @JoinColumn(name = "companies", nullable = false)
+    private Company company;
+    @Enumerated(EnumType.STRING)
+    private VehicleType vehicleType;
+
+
 }
