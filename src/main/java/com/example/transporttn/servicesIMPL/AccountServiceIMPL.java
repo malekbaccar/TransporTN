@@ -6,8 +6,8 @@ import com.example.transporttn.entites.Customer;
 import com.example.transporttn.enumeration.Role;
 import com.example.transporttn.repositories.CompanyRepository;
 import com.example.transporttn.repositories.CustomerRepository;
-import com.example.transporttn.repositories.UserRepository;
-import com.example.transporttn.services.IUserService;
+import com.example.transporttn.repositories.AccountRepository;
+import com.example.transporttn.services.IAccountService;
 import lombok.AllArgsConstructor;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,24 +28,22 @@ import java.util.regex.Pattern;
 @Service
 @AllArgsConstructor
 @Primary
+public class AccountServiceIMPL implements IAccountService {
 
-public class UserServiceIMPL implements IUserService, UserDetailsService {
-
-    private UserRepository userRepository;
+    private AccountRepository userRepository;
     @Autowired
     private CustomerRepository customerRepository;
     private CompanyRepository companyRepository;
 
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
     // Pattern pour vérifier le format de l'email
-    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
 
 //    public boolean isPasswordExists(String password) {
 //        return userRepository.findPassword(password) != null;
 //    }
 
+/*
     @Override
     public Account registerUser(Account user) {
 
@@ -91,31 +89,11 @@ public class UserServiceIMPL implements IUserService, UserDetailsService {
 
         return user;
     }
+*/
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Account account = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(MessageFormat.format("messageHttpErrorProperties.getError0002()", email)));
-        Company company = null;
-        try {
-            company = companyRepository.findByAccountId(account.getId())
-                    .orElseThrow(() -> new UsernameNotFoundException(MessageFormat.format("messageHttpErrorProperties.getError0002()", account)));
-        } catch (ResourceNotFoundException e) {
-            throw new RuntimeException(e);
-        }
 
-        if (company == null) {
-            throw new UsernameNotFoundException("User not found in database");
 
-        } else {
-            System.out.println("user found in database");
-
-        }
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(account.getRole().toString()));
-        return new org.springframework.security.core.userdetails.User(company.getEmail(), company.getAccount().getPassword(), authorities);
-    }
-
+/*
     @Override
 
     public String loginUser(String email, String password) {
@@ -141,12 +119,9 @@ public class UserServiceIMPL implements IUserService, UserDetailsService {
         }
 
 
-    }
 
-    // Méthode pour vérifier le format de l'email
-    private boolean isValidEmail(String email) {
-        return EMAIL_PATTERN.matcher(email).matches();
     }
+*/
 
 
 }

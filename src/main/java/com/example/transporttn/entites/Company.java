@@ -21,7 +21,7 @@ public class Company implements Serializable {
     private Long id;
 
     @Column(name = "firstname")
-    private String name;
+    private String firstname;
 
     @Column(name = "lastname")
     private String lastname;
@@ -34,6 +34,9 @@ public class Company implements Serializable {
 
     @Column(name = "address")
     private String address;
+
+    @Column(name = "password")
+    private String password;
 
     @OneToOne
     private Account account;

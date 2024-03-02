@@ -8,12 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<Account, Long> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query("select a from Account a where a.email like :email")
     Optional<Account> findByEmail(String email);
 
-    @Query("select a from Account a where a.email like :email")
-    Account findByEmail2(String email);
 
     @Query("select a.password from Account a where a.password = :password")
     String findPassword(String password);

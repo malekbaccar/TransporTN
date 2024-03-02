@@ -20,12 +20,6 @@ public class Account implements Serializable {
 
     private Long id;
 
-    @Column(name = "firstname")
-    private String name;
-
-    @Column(name = "lastname")
-    private String lastname;
-
     @Column(name = "email")
     private String email;
 
