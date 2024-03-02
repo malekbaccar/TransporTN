@@ -6,16 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Account")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Account {
+public class Account implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     @Column(name = "firstname")
@@ -33,14 +35,14 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+//    @JoinColumn(name = "id", referencedColumnName = "id_account")
+//    @OneToOne(mappedBy = "account")
+//    private Company company;
 
-    @OneToOne(mappedBy = "account")
-    private Company company;
-
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Account_Customer_id", referencedColumnName = "id")
-    private Customer customer;
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "id", referencedColumnName = "id_account")
+//    private Customer customer;
 
 
 }

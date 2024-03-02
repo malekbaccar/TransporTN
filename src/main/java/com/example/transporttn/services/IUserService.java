@@ -1,5 +1,10 @@
 package com.example.transporttn.services;
 
+import com.example.transporttn.entites.Account;
+
 public interface IUserService {
-//    public User registerUser(User user);
+    Account registerUser(Account user);
+
+    String loginUser(String email, String password);
+
 }

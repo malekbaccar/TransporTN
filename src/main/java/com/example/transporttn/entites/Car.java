@@ -1,15 +1,14 @@
 package com.example.transporttn.entites;
 
 
-import javax.persistence.*;
-
 import com.example.transporttn.enumeration.VehicleType;
-import lombok.*;
+import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Vehicule")
+@Table(name = "Car")
 @Data
 public class Car implements Serializable {
     @Id

@@ -5,17 +5,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 
 @Entity
-@Table(name = "_user")
+@Table(name = "Company")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Company {
+public class Company implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     @Column(name = "firstname")
@@ -33,8 +35,7 @@ public class Company {
     @Column(name = "address")
     private String address;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    @OneToOne
     private Account account;
     @OneToMany(mappedBy = "company")
     private Set<Driver> drivers;
