@@ -1,28 +1,13 @@
 package com.example.transporttn.servicesIMPL;
 
-import com.example.transporttn.entites.Account;
-import com.example.transporttn.entites.Company;
-import com.example.transporttn.entites.Customer;
-import com.example.transporttn.enumeration.Role;
 import com.example.transporttn.repositories.CompanyRepository;
 import com.example.transporttn.repositories.CustomerRepository;
 import com.example.transporttn.repositories.AccountRepository;
 import com.example.transporttn.services.IAccountService;
 import lombok.AllArgsConstructor;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.regex.Pattern;
 
 
 @Service

@@ -1,6 +1,5 @@
 package com.example.transporttn.entites;
 
-import com.example.transporttn.enumeration.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +25,7 @@ public class Account implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = CascadeType.ALL)
     private Role role;
 
 //    @JoinColumn(name = "id", referencedColumnName = "id_account")

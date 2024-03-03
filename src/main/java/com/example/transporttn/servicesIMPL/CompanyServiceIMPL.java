@@ -2,10 +2,10 @@ package com.example.transporttn.servicesIMPL;
 
 import com.example.transporttn.entites.Account;
 import com.example.transporttn.entites.Company;
-import com.example.transporttn.entites.Customer;
-import com.example.transporttn.enumeration.Role;
+import com.example.transporttn.entites.Role;
 import com.example.transporttn.repositories.CompanyRepository;
 import com.example.transporttn.repositories.AccountRepository;
+import com.example.transporttn.repositories.RoleRepository;
 import com.example.transporttn.services.ICompanyService;
 import lombok.AllArgsConstructor;
 import org.apache.velocity.exception.ResourceNotFoundException;
@@ -35,6 +35,7 @@ public class CompanyServiceIMPL implements ICompanyService, UserDetailsService {
 
 
     private PasswordEncoder passwordEncoder;
+    private RoleRepository roleRepository;
 
 
     @Override
@@ -58,7 +59,9 @@ public class CompanyServiceIMPL implements ICompanyService, UserDetailsService {
             String encodedPassword = passwordEncoder.encode(company.getPassword());
             account.setEmail(company.getEmail());
             account.setPassword(encodedPassword);
-            account.setRole(Role.company);
+            Role role = roleRepository.findByName("Company")
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            account.setRole(role);
             accountRepository.save(account);
             // Vérifier le rôle et enregistrer dans la table appropriée
 
@@ -98,7 +101,7 @@ public class CompanyServiceIMPL implements ICompanyService, UserDetailsService {
 
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(account.getRole().toString()));
+        authorities.add(new SimpleGrantedAuthority(account.getRole().getName()));
         return new org.springframework.security.core.userdetails.User(company.getEmail(), company.getAccount().getPassword(), authorities);
     }
 }
